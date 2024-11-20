@@ -1,0 +1,45 @@
+{
+  "_id": 8,
+  "allow_submission": true,
+  "cooldown": -2,
+  "creation_time": "2024-11-20 06:38:29",
+  "deadline": "2024-11-20 06:38:29",
+  "description": "# HW2 - Simple Http Server\n\nThe following code shows the implementation of a simple HTTP server written in shell script:\n```sh\n#!/bin/bash\n\ntrap \"echo 'Terminating...'; exit\" SIGINT SIGTERM\n\nprocess() {\n    content=$(cat)\n    echo -e \"$content\"\n}\n\nprocess_http() {\n    payload=$(cat)\n    # HTTP Response headers\n    echo -e \"HTTP/1.1 200 OK\"\n    echo -e \"Server: Simple Http Server\"\n    echo -e \"Date: $(date -u '+%a, %d %b %Y %H:%M:%S GMT')\"\n    echo -e \"Content-Type: text/plain; charset=utf-8\"\n    echo -e \"Content-Length: $(echo -e \"$payload\" | wc -c)\"\n    echo -e \"\"\n    echo -e \"$payload\"\n}\n\necho \"Listening on 0.0.0.0:8080\"\nwhile :; do\n    cat ./log | process | process_http | timeout 1 nc -l 0.0.0.0 8080\ndone\n```\n\nYou need to implement the `process` function to meet the following requirements:\n1. The format of the `log` file is provided below, logging users login events.\n2. Output the top 5 users with the most failed login attempts.\n3. Display the exact time of the last successful login by each user in lexicographical order.\n\nFormat of the `log` file:\n```\n...\n[2023-10-05 09:15:32] - admin: login, failed\n[2023-10-05 09:15:33] - root: login, failed\n[2023-10-05 09:15:35] - user1: login, successful\n[2023-10-05 09:15:38] - root: login, failed\n...\n```\nFormat of the output:\n```\nTop 5 users with the most failed login attempts:\n1. root\n2. admin\n3. user1\n4. user2\n5. user3\n\nThe time of the last successfully login:\nadmin: 2023-10-05 09:15:16\nroot: 2023-10-04 16:35:49\nuser1: 2023-10-05 09:15:35\nuser2: 2023-10-05 09:16:39\nuser3: 2023-10-05 09:16:12\n```\n\nYou should place your shell script in `/home/judge/process_log.sh`, with content like this:\n```sh\nprocess() {\n    content=$(cat)\n    echo -e \"$content\"\n}\n```\n\nNote.\n1. You cannot use any other interpreters, compilers or programming languages (such as Python, Perl, C++...)\n2. You can only submit one script file.\n3. You can use both bash or sh.\n4. `awk(mawk)`, `sed` and the other common command tools are allowed.",
+  "dockerfile": "",
+  "is_valid": true,
+  "max_cooldown_time": 10,
+  "min_cooldown_time": 0,
+  "playbooks": [
+    {
+      "_id": 146,
+      "playbook_name": "tc1",
+      "script": "[2023-10-05 09:15:32] - admin: login, failed\n[2023-10-05 09:15:32] - admin: login, failed\n[2023-10-05 09:15:32] - admin: login, failed\n[2023-10-05 09:15:32] - admin: login, failed\n[2023-10-05 09:15:32] - admin: login, failed\n[2023-10-05 09:15:33] - root: login, failed\n[2023-10-05 09:15:34] - root: login, failed\n[2023-10-05 09:15:35] - user1: login, failed\n[2023-10-05 09:15:36] - root: login, successful\n[2023-10-05 09:15:38] - root: login, failed\n[2023-10-05 09:16:10] - admin: login, failed\n[2023-10-05 09:16:30] - user2: login, failed\n[2023-10-05 09:17:00] - root: login, failed\n[2023-10-05 09:17:03] - user3: login, failed\n[2023-10-05 09:17:03] - user3: login, failed\n[2023-10-05 09:17:05] - admin: login, successful\n[2023-10-05 09:17:15] - root: login, successful\n[2023-10-05 09:18:00] - user3: login, failed\n[2023-10-05 09:18:20] - user4: login, failed\n[2023-10-05 09:18:40] - user4: login, failed\n[2023-10-05 09:18:45] - user4: login, successful\n[2023-10-05 09:19:00] - user1: login, successful\n[2023-10-05 09:19:15] - user2: login, failed\n[2023-10-05 09:19:30] - user2: login, failed\n[2023-10-05 09:19:45] - user2: login, failed\n[2023-10-05 09:20:15] - root: login, failed"
+    },
+    {
+      "_id": 147,
+      "playbook_name": "ans1",
+      "script": "Top 5 users with the most failed login attempts:\n1. admin\n2. root\n3. user2\n4. user3\n5. user4\n\nThe time of the last successfully login:\nadmin: 2023-10-05 09:17:05\nroot: 2023-10-05 09:17:15\nuser1: 2023-10-05 09:19:00\nuser4: 2023-10-05 09:18:45"
+    },
+    {
+      "_id": 148,
+      "playbook_name": "entry.sh",
+      "script": "#!/bin/bash\n\nsource ./process_log.sh\n\ncat | process"
+    },
+    {
+      "_id": 149,
+      "playbook_name": "id_rsa",
+      "script": "-----BEGIN OPENSSH PRIVATE KEY-----\n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\nX/ty+HfWob1tcAAAAJbGluQGxpbnV4AQI=\n-----END OPENSSH PRIVATE KEY-----\n"
+    }
+  ],
+  "problem_name": "HW2 - Simple Http Server",
+  "start_time": "2024-11-20 06:38:29",
+  "subtasks": [
+    {
+      "_id": 448,
+      "depends_on": [],
+      "point": 100,
+      "script": "chmod 600 ./id_rsa\nscp -i ./id_rsa -o StrictHostKeyChecking=no judge@10.101.101.1:\"/home/judge/process_log.sh\" ./\nchmod +x entry.sh\ncat tc1 | ./entry.sh > output1\ndiff -w output1 ans1 > /dev/null",
+      "task_name": "testcase1"
+    }
+  ]
+}
