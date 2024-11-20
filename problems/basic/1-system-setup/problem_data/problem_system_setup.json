@@ -1,0 +1,75 @@
+{
+  "_id": 6,
+  "allow_submission": true,
+  "cooldown": -2,
+  "creation_time": "2024-11-12 03:20:56",
+  "deadline": "2024-11-12 03:20:56",
+  "description": "# HW1 - System Setup\n\n## Basic Requirements\n1. The suffix of your hostname should be 'workstation', e.g. 'rin-workstation' (case-insensitive). (10pt)\n2. We should be able to connect to your host via WireGuard. (30pt)\n3. We should be login to the host with user `judge` via SSH with the following public key. (20pt)\n4. We should be able to execute **sudo** without entering password. (15pt)\n5. You should create a group: `nasa`, and add `judge` to this group. (15pt)\n6. The login shell of `judge` should be `sh`. (10pt)\n7. The timeclock on your host should synchronize with the server from `tock.stdtime.gov.tw`. (0pt)\n\nSSH Public Key:\n```\nssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCzDHNMgPvK4BPgRMvX4T6gL8RX0mu7FeMkqwbOBkHhBFagU9iRkBajF94pmE/ys8Wu6gik7JE+L0nXxbMCp6bMIZ9gkMNnF4qgp9UY/xUBoKk/7KgR9JQUeGOrZbE/l0espPYRcUZPpLog40h7gkidg1HqbNXHJ2mXJR3nuhgErkymWd6QhI9oTDxIFoC19u/PJWf1g3JBF6At/3H4XEPsnYE7wbnakWNjSh71qBf783TfhmN+vhf5o90THK+0JdyPeIiHL8VJAWEbdVp8MRBFeconZYqfkUPZX28MJ+Y2MwOLNuuhDUg1st9z1qU69NW+ZQdLJyWtlJCjCukTEUhXVgypMIPyComzk6woiCHywlVQZAcmNk4c0dH+HEXzAnHowvDVgDtEvZYpqu9G+xg6cd1YsIXH+A99pylABTUK+HP6bBQdnal2MrmoM81ksZT4zjhCy3EJf0fgzjerVG7J0a4V1wyUX28UfXvcY6lB0ezRrf/hVa5GyoU8erdeqQs=\n```\n",
+  "dockerfile": "",
+  "is_valid": true,
+  "max_cooldown_time": 30,
+  "min_cooldown_time": 10,
+  "playbooks": [
+    {
+      "_id": 134,
+      "playbook_name": "id_rsa",
+      "script": "-----BEGIN OPENSSH PRIVATE KEY-----\n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\nX/ty+HfWob1tcAAAAJbGluQGxpbnV4AQI=\n-----END OPENSSH PRIVATE KEY-----\n"
+    }
+  ],
+  "problem_name": "HW1 - System Setup",
+  "start_time": "2024-11-12 03:20:56",
+  "subtasks": [
+    {
+      "_id": 439,
+      "depends_on": [],
+      "point": 30,
+      "script": "ping 10.101.101.1 -c 1",
+      "task_name": "ping-test"
+    },
+    {
+      "_id": 440,
+      "depends_on": [
+        "ping-test"
+      ],
+      "point": 20,
+      "script": "chmod 600 ./id_rsa\nssh -i ./id_rsa -o StrictHostKeyChecking=no judge@10.101.101.1 'true'",
+      "task_name": "ssh-test"
+    },
+    {
+      "_id": 441,
+      "depends_on": [
+        "ssh-test"
+      ],
+      "point": 15,
+      "script": "chmod 600 ./id_rsa\nssh -i ./id_rsa -o StrictHostKeyChecking=no judge@10.101.101.1 'sudo -l'",
+      "task_name": "sudo-test"
+    },
+    {
+      "_id": 442,
+      "depends_on": [
+        "ssh-test"
+      ],
+      "point": 10,
+      "script": "chmod 600 ./id_rsa\nssh -i ./id_rsa -o StrictHostKeyChecking=no judge@10.101.101.1 'hostname' | egrep -i '^.*-workstation$'",
+      "task_name": "hostname-check"
+    },
+    {
+      "_id": 443,
+      "depends_on": [
+        "ssh-test"
+      ],
+      "point": 10,
+      "script": "chmod 600 ./id_rsa\nssh -i ./id_rsa -o StrictHostKeyChecking=no judge@10.101.101.1 'whereis sh' | grep $(ssh -i ./id_rsa -o StrictHostKeyChecking=no judge@10.101.101.1 \"grep '^judge:' /etc/passwd | cut -d: -f7\")",
+      "task_name": "login-shell-check"
+    },
+    {
+      "_id": 444,
+      "depends_on": [
+        "ssh-test"
+      ],
+      "point": 15,
+      "script": "chmod 600 ./id_rsa\nssh -i ./id_rsa -o StrictHostKeyChecking=no judge@10.101.101.1 'id' | grep '(nasa)'",
+      "task_name": "group-check"
+    }
+  ]
+}
